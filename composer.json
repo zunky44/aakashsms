@@ -1,0 +1,54 @@
+{
+    "name": "zunky44/aakashsms",
+    "description": "Laravel Package for aakashSMS.",
+    "keywords": [
+        "zunky44",
+        "aakashsms"
+    ],
+    "homepage": "https://github.com/zunky44/aakashsms",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jagat Karki",
+            "email": "jagat.kc34@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zunky44\\Aakashsms\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Zunky44\\Aakashsms\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zunky44\\Aakashsms\\AakashsmsServiceProvider"
+            ],
+            "aliases": {
+                "Aakashsms": "Zunky44\\Aakashsms\\AakashsmsFacade"
+            }
+        }
+    }
+}
