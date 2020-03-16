@@ -18,7 +18,7 @@ composer require zunky44/aakashsms
 ## Usage
 
 ``` php
-// Usage description here
+docs comming soon
 ```
 
 ### Testing
