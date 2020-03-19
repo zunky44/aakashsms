@@ -46,17 +46,24 @@ class Aakashsms
         $from = is_null($from) ? Aakashsms::getFrom() : $from;
         $auth_token = is_null($auth_token) ? Aakashsms::getAuthToken() : $auth_token;
 
-        $client = new Client();
-        $request = $client->get(Aakashsms::getSendURL(), [
-            'query' => [
-                'token' => $auth_token,
-                'to' => $to,
-                'from' => $from,
-                'message' => $message
-            ],
-            'http_error' => false
-        ]);
-        $response = $request->getBody();
+        $args = http_build_query(array(
+            'auth_token'=> $auth_token,
+            'from'  => $from,
+            'to'    => $to,
+            'text'  => $message
+        ));
+        $url = Aakashsms::getSendURL();
+
+        # Make the call using API.
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1); ///
+        curl_setopt($ch, CURLOPT_POSTFIELDS,$args);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        // Response
+        $response = curl_exec($ch);
+        curl_close($ch);
+
         return $response;
 
     }
