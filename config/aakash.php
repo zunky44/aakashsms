@@ -10,7 +10,7 @@ return [
     //Identity about the sender provide by AakashSMS
     'from'       => '',
 
-    'apiURL' => 'http://aakashsms.com/admin/public/sms/v1/',
+    'apiURL' => 'https://aakashsms.com/admin/public/sms/v1/',
     'methods' =>  [
         'send' => 'send/',
         'credit'  => 'credit/'

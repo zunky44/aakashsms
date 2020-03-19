@@ -54,7 +54,7 @@ class Aakashsms
 
         # Make the call using API.
         $client = new Client();
-        $request = $client->get(Aakashsms::getCreditUrl(), [
+        $request = $client->post(Aakashsms::getCreditUrl(), [
             'query' => [
                 'auth_token'=> $auth_token,
             'from'  => $from,
@@ -75,9 +75,9 @@ class Aakashsms
         $accessToken = is_null($auth_token) ? Aakashsms::getAuthToken() : $auth_token;
 
         $client = new Client();
-        $request = $client->get(Aakashsms::getCreditUrl(), [
+        $request = $client->post(Aakashsms::getCreditUrl(), [
             'query' => [
-                'token' => $auth_token
+                'auth_token' => $auth_token
             ],
             'http_errors' => false
         ]);
