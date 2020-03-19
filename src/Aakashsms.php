@@ -46,29 +46,30 @@ class Aakashsms
         $from = is_null($from) ? Aakashsms::getFrom() : $from;
         $auth_token = is_null($auth_token) ? Aakashsms::getAuthToken() : $auth_token;
 
-        $args = http_build_query(array(
-            'auth_token'=> $auth_token,
+//        $args = http_build_query(array(
+//            'auth_token'=> '<token from dashboard>',
+//            'from'  => '31001',
+//            'to'    => '<comma separated 10 digits mobile numbers>',
+//            'text'  => '<message to be sent>'));
+
+        # Make the call using API.
+        $client = new Client();
+        $request = $client->get(Aakashsms::getCreditUrl(), [
+            'query' => [
+                'auth_token'=> $auth_token,
             'from'  => $from,
             'to'    => $to,
             'text'  => $message
-        ));
-        $url = Aakashsms::getSendURL();
+            ],
+            'http_errors' => false
+        ]);
 
-        # Make the call using API.
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1); ///
-        curl_setopt($ch, CURLOPT_POSTFIELDS,$args);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        // Response
-        $response = curl_exec($ch);
-        curl_close($ch);
-
+        $response = $request->getBody();
         return $response;
 
     }
 
-
+//https://aakashsms.com/admin/public/sms/v1/send
     public static function credits($auth_token = Null)
     {
         $accessToken = is_null($auth_token) ? Aakashsms::getAuthToken() : $auth_token;
